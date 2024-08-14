@@ -48,5 +48,22 @@ func (d *Dictagraph) run() error {
 }
 
 func runService() error {
+    serviceConfig := &service.Config{
+        Name: "dictagraph deamo programming",
+        DisplayName: "dictagraph",
+        Description: "一个监控服务程序",
+    }
+
+    graph := NewDictagraph("Dictagraph", "2024-08-14")
+
+    srv, err := service.New(graph, serviceConfig)
+    if err != nil {
+        return err
+    }
+
+    if err := srv.Run(); err != nil {
+        return err
+    }
+
     return nil
 }
